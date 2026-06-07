@@ -578,6 +578,65 @@
   footer p { font-size: 14px; }
   footer .heart { display: inline-block; margin: 0 4px; }
 
+  /* PROGRESS TRACKER */
+  .progress-tracker {
+    margin-top: 24px;
+    max-width: 540px;
+    background: var(--cream-light);
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    padding: 16px 18px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .progress-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .progress-raised {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green-darker);
+    line-height: 1;
+  }
+
+  .progress-label {
+    font-size: 14px;
+    color: var(--tan);
+  }
+
+  .progress-label strong {
+    color: var(--brown);
+    font-weight: 600;
+  }
+
+  .progress-bar {
+    height: 10px;
+    background: rgba(74, 27, 12, 0.12);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--grass), var(--green));
+    border-radius: 6px;
+    transition: width 0.6s ease;
+  }
+
+  .progress-meta {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--tan);
+    font-style: italic;
+  }
+
   /* MOBILE */
   @media (max-width: 720px) {
     .hero { padding: 36px 0 40px; }
@@ -593,6 +652,7 @@
     .btn { padding: 12px 20px; font-size: 15px; }
     .donate-row { flex-direction: column; align-items: stretch; }
     .donate-row .btn { justify-content: center; }
+    .progress-raised { font-size: 22px; }
   }
 </style>
 </head>
@@ -612,6 +672,16 @@
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7.3 21h-2.9c-.4 0-.7-.4-.6-.8L6.5 3.6c.1-.4.4-.6.8-.6h6.9c2.4 0 4.6 1.1 5 3.5.5 2.4-.6 4.6-2.9 5.7-1.5.7-3.2.8-4.7.8h-2c-.4 0-.7.3-.8.7L7.9 20.4c0 .3-.3.6-.6.6zM18 8.2c-.5 2.6-2.9 3.8-5.8 3.8h-1.5l-.9 5.5h2.7c.4 0 .7-.3.8-.7l.7-3.6h2.3c2.5 0 4.4-1 4.9-3.4.3-1.5-.1-2.6-1.2-3.2-.3.5-.5 1-1 1.6z"/></svg>
         Donate with PayPal
       </a>
+    </div>
+
+    <!-- Progress tracker: update donations by editing data-raised below. -->
+    <div class="progress-tracker" data-raised="0" data-goal="580">
+      <div class="progress-stats">
+        <span class="progress-raised">$0</span>
+        <span class="progress-label">raised of <strong>$580</strong> goal</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="progress-meta">Be the first to chip in!</div>
     </div>
   </div>
 
@@ -704,7 +774,7 @@
       <div class="option-detail option-b-detail">
         <h4>More about Option B</h4>
         <p>If no neighborhood builder steps forward, we'd purchase a pre-built library directly from the official Little Free Library nonprofit shop. Their libraries are handcrafted in Wisconsin and engineered specifically for outdoor durability.</p>
-        <p>My recommended model is the <strong>Composite Double Door Cottage at $439.95</strong> — the largest composite model offered. The composite material (recycled plastic lumber, similar to high-end outdoor furniture) resists rot, fading, and insect damage, requiring little to no maintenance for years. Comparable models range from $299.95–$439.95 and can be browsed at <a href="https://littlefreelibrary.org/shop/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">littlefreelibrary.org/shop</a>. Final model and color would be confirmed with the ARC before purchase.</p>
+        <p>My recommended model is the <a href="https://shop.littlefreelibrary.org/collections/little-free-libraries/products/composite-double-door-cottage-gray-little-free-library" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;"><strong>Composite Double Door Cottage at $439.95</strong></a> — the largest composite model offered. The composite material (recycled plastic lumber, similar to high-end outdoor furniture) resists rot, fading, and insect damage, requiring little to no maintenance for years. Comparable models range from $299.95–$439.95 and can be browsed at <a href="https://littlefreelibrary.org/shop/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">littlefreelibrary.org/shop</a>. Final model and color would be confirmed with the ARC before purchase.</p>
       </div>
     </div>
 
@@ -739,7 +809,7 @@
           </div>
           <div class="way-title">Any amount helps</div>
           <div class="way-desc">Venmo, PayPal, or cash all welcome.</div>
-          <span class="way-tag">Goal: ~$500</span>
+          <span class="way-tag">Goal: $580</span>
         </div>
       </div>
 
@@ -873,7 +943,7 @@
         <div class="contact-label">Send an email</div>
         <div class="contact-value">julietashner@gmail.com</div>
       </a>
-      <a class="contact-card dm" href="FACEBOOK_PROFILE_LINK_HERE" target="_blank" rel="noopener">
+      <a class="contact-card dm" href="https://www.facebook.com/jules.g.tash" target="_blank" rel="noopener">
         <div class="contact-label">DM me</div>
         <div class="contact-value">on Facebook</div>
       </a>
@@ -885,6 +955,32 @@
   <p>Can't wait to read with you, neighbors! <span class="heart">📚</span></p>
   <p style="margin-top: 8px; opacity: 0.7;">Hickory Hill Little Free Library · Manor Garden Lane</p>
 </footer>
+
+<script>
+  (function () {
+    var tracker = document.querySelector('.progress-tracker');
+    if (!tracker) return;
+    var raised = parseFloat(tracker.dataset.raised) || 0;
+    var goal = parseFloat(tracker.dataset.goal) || 1;
+    var pct = Math.min(100, Math.round((raised / goal) * 100));
+    var fmt = function (n) { return '$' + Math.round(n).toLocaleString(); };
+
+    tracker.querySelector('.progress-raised').textContent = fmt(raised);
+    tracker.querySelector('.progress-label strong').textContent = fmt(goal);
+    tracker.querySelector('.progress-fill').style.width = pct + '%';
+    tracker.setAttribute('role', 'progressbar');
+    tracker.setAttribute('aria-valuenow', String(pct));
+    tracker.setAttribute('aria-valuemin', '0');
+    tracker.setAttribute('aria-valuemax', '100');
+    tracker.setAttribute('aria-label', fmt(raised) + ' raised of ' + fmt(goal) + ' goal');
+
+    var meta = tracker.querySelector('.progress-meta');
+    if (raised <= 0) meta.textContent = 'Be the first to chip in!';
+    else if (pct < 50) meta.textContent = pct + '% of the way there — every dollar counts.';
+    else if (pct < 100) meta.textContent = pct + '% there — so close! Help us cross the finish line.';
+    else meta.textContent = 'Goal reached — thank you, neighbors!';
+  })();
+</script>
 
 </body>
 </html>
