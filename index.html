@@ -580,63 +580,116 @@
   footer p { font-size: 14px; }
   footer .heart { display: inline-block; margin: 0 4px; }
 
-  /* PROGRESS TRACKER */
+  /* PROGRESS TRACKER (vertical) */
   .progress-tracker {
-    margin-top: 24px;
-    max-width: 540px;
+    position: absolute;
+    right: 280px;
+    bottom: 28px;
+    width: 220px;
     background: var(--cream-light);
     border: 2px solid var(--green);
     border-radius: 12px;
-    padding: 16px 18px;
+    padding: 14px 16px 12px;
+    z-index: 3;
+    box-shadow: 0 4px 18px rgba(74, 27, 12, 0.1);
+  }
+
+  .pt-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green-darker);
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .pt-body {
+    display: flex;
+    gap: 14px;
+    height: 220px;
+  }
+
+  .pt-track {
     position: relative;
+    width: 14px;
+    background: rgba(74, 27, 12, 0.13);
+    border-radius: 7px;
+    flex-shrink: 0;
+  }
+
+  .pt-fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0%;
+    background: linear-gradient(0deg, var(--grass), var(--green));
+    border-radius: 7px;
+    transition: height 0.8s ease;
+  }
+
+  .pt-mid-line {
+    position: absolute;
+    left: -6px;
+    right: -6px;
+    height: 2px;
+    bottom: 0%;
+    background: var(--red-darker);
+    border-radius: 1px;
     z-index: 2;
   }
 
-  .progress-stats {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+  .pt-mid-line::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red-darker);
   }
 
-  .progress-raised {
-    font-size: 26px;
+  .pt-labels {
+    flex: 1;
+    position: relative;
+  }
+
+  .pt-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    white-space: nowrap;
+    transform: translateY(-50%);
+  }
+
+  .pt-amount {
+    display: block;
     font-weight: 700;
-    color: var(--green-darker);
-    line-height: 1;
-  }
-
-  .progress-label {
     font-size: 14px;
-    color: var(--tan);
-  }
-
-  .progress-label strong {
     color: var(--brown);
-    font-weight: 600;
+    line-height: 1.1;
   }
 
-  .progress-bar {
-    height: 10px;
-    background: rgba(74, 27, 12, 0.12);
-    border-radius: 6px;
-    overflow: hidden;
+  .pt-tag {
+    display: block;
+    font-size: 10.5px;
+    color: var(--tan);
+    margin-top: 1px;
+    letter-spacing: 0.2px;
   }
 
-  .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--grass), var(--green));
-    border-radius: 6px;
-    transition: width 0.6s ease;
-  }
+  .pt-label-goal { top: 0; transform: translateY(0); }
+  .pt-label-mid .pt-amount { color: var(--red-darker); }
 
-  .progress-meta {
-    margin-top: 10px;
-    font-size: 13px;
+  .pt-meta {
+    margin-top: 12px;
+    font-size: 12px;
     color: var(--tan);
     font-style: italic;
+    text-align: center;
+    line-height: 1.3;
   }
 
   /* MOBILE */
@@ -654,7 +707,14 @@
     .btn { padding: 12px 20px; font-size: 15px; }
     .donate-row { flex-direction: column; align-items: stretch; }
     .donate-row .btn { justify-content: center; }
-    .progress-raised { font-size: 22px; }
+    .hero-illustration { display: none; }
+    .progress-tracker {
+      position: static;
+      width: calc(100% - 48px);
+      max-width: 320px;
+      margin: 24px 24px 0;
+    }
+    .pt-body { height: 200px; }
   }
 </style>
 </head>
@@ -675,17 +735,33 @@
         Donate with PayPal
       </a>
     </div>
-
-    <!-- Progress tracker: update donations by editing data-raised below. -->
-    <div class="progress-tracker" data-raised="11" data-goal="580">
-      <div class="progress-stats">
-        <span class="progress-raised">$0</span>
-        <span class="progress-label">raised of <strong>$580</strong> goal</span>
-      </div>
-      <div class="progress-bar"><div class="progress-fill"></div></div>
-      <div class="progress-meta">Be the first to chip in!</div>
-    </div>
   </div>
+
+  <!-- Progress tracker: update donations by editing data-raised below. -->
+  <aside class="progress-tracker" data-raised="11" data-goal="580" data-mid="150" aria-label="Fundraising progress">
+    <div class="pt-title">Fundraising</div>
+    <div class="pt-body">
+      <div class="pt-track">
+        <div class="pt-fill"></div>
+        <div class="pt-mid-line"></div>
+      </div>
+      <div class="pt-labels">
+        <div class="pt-label pt-label-goal">
+          <span class="pt-amount">$580</span>
+          <span class="pt-tag">Kit goal</span>
+        </div>
+        <div class="pt-label pt-label-mid">
+          <span class="pt-amount">$150</span>
+          <span class="pt-tag">Community-built</span>
+        </div>
+        <div class="pt-label pt-label-raised">
+          <span class="pt-amount">$11</span>
+          <span class="pt-tag">Raised</span>
+        </div>
+      </div>
+    </div>
+    <div class="pt-meta">Every dollar counts.</div>
+  </aside>
 
   <svg class="hero-illustration" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="80" y="60" width="120" height="65" fill="#D85A4B" stroke="#A03A2E" stroke-width="2"/>
@@ -960,26 +1036,47 @@
 
 <script>
   (function () {
-    var tracker = document.querySelector('.progress-tracker');
-    if (!tracker) return;
-    var raised = parseFloat(tracker.dataset.raised) || 0;
-    var goal = parseFloat(tracker.dataset.goal) || 1;
-    var pct = Math.min(100, Math.round((raised / goal) * 100));
+    var t = document.querySelector('.progress-tracker');
+    if (!t) return;
+    var raised = parseFloat(t.dataset.raised) || 0;
+    var goal = parseFloat(t.dataset.goal) || 1;
+    var mid = parseFloat(t.dataset.mid) || 0;
+    var raisedPct = Math.max(0, Math.min(100, (raised / goal) * 100));
+    var midPct = Math.max(0, Math.min(100, (mid / goal) * 100));
+    var pctRounded = Math.round(raisedPct);
     var fmt = function (n) { return '$' + Math.round(n).toLocaleString(); };
 
-    tracker.querySelector('.progress-raised').textContent = fmt(raised);
-    tracker.querySelector('.progress-label strong').textContent = fmt(goal);
-    tracker.querySelector('.progress-fill').style.width = pct + '%';
-    tracker.setAttribute('role', 'progressbar');
-    tracker.setAttribute('aria-valuenow', String(pct));
-    tracker.setAttribute('aria-valuemin', '0');
-    tracker.setAttribute('aria-valuemax', '100');
-    tracker.setAttribute('aria-label', fmt(raised) + ' raised of ' + fmt(goal) + ' goal');
+    t.querySelector('.pt-label-goal .pt-amount').textContent = fmt(goal);
+    t.querySelector('.pt-label-mid .pt-amount').textContent = fmt(mid);
+    t.querySelector('.pt-label-raised .pt-amount').textContent = fmt(raised);
 
-    var meta = tracker.querySelector('.progress-meta');
+    t.querySelector('.pt-fill').style.height = raisedPct + '%';
+    t.querySelector('.pt-mid-line').style.bottom = midPct + '%';
+
+    var midLabel = t.querySelector('.pt-label-mid');
+    var raisedLabel = t.querySelector('.pt-label-raised');
+    midLabel.style.top = (100 - midPct) + '%';
+    raisedLabel.style.top = (100 - raisedPct) + '%';
+
+    // Nudge the raised label if it would collide with the mid label
+    // (both are centered on their value; collision when within ~14% of each other)
+    var gap = Math.abs(raisedPct - midPct);
+    if (gap < 14) {
+      raisedLabel.style.transform = raisedPct < midPct
+        ? 'translateY(0)'      // raised below mid: push raised below its mark
+        : 'translateY(-100%)'; // raised above mid: push raised above its mark
+    }
+
+    t.setAttribute('role', 'progressbar');
+    t.setAttribute('aria-valuenow', String(pctRounded));
+    t.setAttribute('aria-valuemin', '0');
+    t.setAttribute('aria-valuemax', '100');
+    t.setAttribute('aria-label', fmt(raised) + ' raised of ' + fmt(goal) + ' goal');
+
+    var meta = t.querySelector('.pt-meta');
     if (raised <= 0) meta.textContent = 'Be the first to chip in!';
-    else if (pct < 50) meta.textContent = pct + '% of the way there — every dollar counts.';
-    else if (pct < 100) meta.textContent = pct + '% there — so close! Help us cross the finish line.';
+    else if (raised < mid) meta.textContent = pctRounded + '% there — community-built option in reach.';
+    else if (raised < goal) meta.textContent = pctRounded + '% there — past community-built, eyeing the kit!';
     else meta.textContent = 'Goal reached — thank you, neighbors!';
   })();
 </script>
