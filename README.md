@@ -1,0 +1,72 @@
+# hickoryhilllfl.com
+
+Community fundraising and info site for the Hickory Hill neighborhood Little Free Library
+at the Manor Garden Lane footpath entrance.
+
+Live at https://hickoryhilllfl.com.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `index.html` | The entire site — one self-contained page (HTML, CSS, and a tiny inline script) |
+| `favicon.svg` | Browser-tab icon (SVG, scales from 16×16 up) |
+| `.github/workflows/deploy.yml` | Push-to-deploy pipeline |
+
+## Updating the site
+
+Edit `index.html`, commit, push to `main`. The GitHub Actions workflow handles the rest.
+
+### Update donation totals
+
+In `index.html`, find the progress tracker and change the `data-raised` value:
+
+```html
+<div class="progress-tracker" data-raised="0" data-goal="580">
+```
+
+The dollar amount, bar width, percentage, and "X% there" message all derive from
+that one number via the inline script at the bottom of the file. Goal is fixed at
+$580 to match the top end of the kit option.
+
+## Deploy pipeline
+
+`main` → GitHub Actions → S3 sync → CloudFront invalidation. Typical end-to-end
+time: under a minute.
+
+Auth uses GitHub OIDC — no long-lived AWS keys live in the repo. The workflow
+assumes an IAM role scoped to this repo + `main` branch only.
+
+## AWS infrastructure
+
+All in account `205074708100`, region `us-east-1`.
+
+| Resource | Identifier |
+|---|---|
+| S3 bucket (private, OAC-only) | `hickoryhilllfl.com` |
+| CloudFront distribution | `E2S44AR4ROLO4H` (`dwhcubn60hsct.cloudfront.net`) |
+| Origin Access Control | `E4L772NVW2NP9` |
+| ACM cert (apex + www) | `arn:aws:acm:us-east-1:205074708100:certificate/ffc8dd1d-4053-4193-a945-518a1b7c9a46` |
+| Route 53 hosted zone | `Z062250032CJ4XC268APT` |
+| GitHub Actions deploy role | `arn:aws:iam::205074708100:role/hickoryhilllfl-github-deploy` |
+| GitHub repo variable | `CLOUDFRONT_DISTRIBUTION_ID = E2S44AR4ROLO4H` |
+
+DNS is on Route 53 (Namecheap nameservers point at AWS). Apex and `www` both
+resolve to the CloudFront distribution via A/AAAA aliases.
+
+## Local preview
+
+No build step. Just open `index.html` in a browser, or run a static server:
+
+```sh
+python3 -m http.server 8000
+# then visit http://localhost:8000/
+```
+
+## Workflow conventions
+
+- All work happens on a branch in a git worktree under `.claude/worktrees/`;
+  never commit directly to `main`.
+- The repo is set to auto-delete branches when their PR merges, so `main` should
+  stay as the only branch.
+- Commits are signed off (`git commit -s`).
