@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hickory Hill Little Free Library">
+  <rect width="64" height="64" rx="10" fill="#FFB347"/>
+
+  <polygon points="8,24 56,24 50,14 14,14" fill="#5A3818"/>
+  <polygon points="8,24 14,14 14,24" fill="#3D2510"/>
+  <polygon points="56,24 50,14 50,24" fill="#3D2510"/>
+
+  <rect x="11" y="24" width="42" height="22" fill="#D85A4B" stroke="#A03A2E" stroke-width="0.8"/>
+  <rect x="13" y="25" width="38" height="3" fill="#FFFAF0"/>
+  <rect x="11" y="28" width="42" height="2" fill="#5A3818"/>
+
+  <rect x="14" y="32" width="3" height="12" fill="#FFD86B"/>
+  <rect x="18" y="33" width="3" height="11" fill="#7DA9E0"/>
+  <rect x="22" y="31" width="3" height="13" fill="#C58FCF"/>
+  <rect x="26" y="33" width="3" height="11" fill="#5A9956"/>
+  <rect x="30" y="32" width="3" height="12" fill="#FFB347"/>
+  <rect x="34" y="33" width="3" height="11" fill="#E27D7D"/>
+  <rect x="38" y="31" width="3" height="13" fill="#7DC9A0"/>
+  <rect x="42" y="33" width="3" height="11" fill="#FFD86B"/>
+  <rect x="46" y="32" width="3" height="12" fill="#C58FCF"/>
+
+  <rect x="30" y="46" width="4" height="12" fill="#7A4A2B"/>
+  <rect x="28" y="56" width="8" height="3" fill="#5A3818"/>
+</svg>
