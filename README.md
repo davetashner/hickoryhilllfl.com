@@ -22,12 +22,16 @@ Edit `index.html`, commit, push to `main`. The GitHub Actions workflow handles t
 In `index.html`, find the progress tracker and change the `data-raised` value:
 
 ```html
-<div class="progress-tracker" data-raised="0" data-goal="580">
+<aside class="progress-tracker" data-raised="0" data-goal="580" data-mid="150">
 ```
 
-The dollar amount, bar width, percentage, and "X% there" message all derive from
-that one number via the inline script at the bottom of the file. Goal is fixed at
-$580 to match the top end of the kit option.
+- `data-raised` — current dollars in. Change as donations come in.
+- `data-goal` — top of the bar ($580, kit option).
+- `data-mid` — milestone marker for the community-built option ($150).
+
+The bar fill height, milestone line position, label placements, and the
+percentage-based meta message all derive from those numbers via the inline
+script at the bottom of the file.
 
 ## Deploy pipeline
 
