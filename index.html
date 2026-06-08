@@ -1111,12 +1111,14 @@
     raisedLabel.style.top = (100 - raisedPct) + '%';
 
     // Nudge the raised label if it would collide with the mid label
-    // (both are centered on their value; collision when within ~14% of each other)
+    // (both are centered on their value; collision when within ~14% of each other).
+    // The mid label stays centered on its mark, so the raised label must clear a
+    // full label height plus half the mid label (~16px) to avoid overlapping it.
     var gap = Math.abs(raisedPct - midPct);
     if (gap < 14) {
       raisedLabel.style.transform = raisedPct < midPct
-        ? 'translateY(0)'      // raised below mid: push raised below its mark
-        : 'translateY(-100%)'; // raised above mid: push raised above its mark
+        ? 'translateY(16px)'              // raised below mid: drop fully below mid label
+        : 'translateY(calc(-100% - 16px))'; // raised above mid: lift fully above mid label
     }
 
     t.setAttribute('role', 'progressbar');
