@@ -1,0 +1,61 @@
+<svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <!-- Hickory Hill Little Free Library — README banner -->
+  <rect width="1000" height="420" rx="16" fill="#FFB347"/>
+
+  <!-- Board approved pill -->
+  <rect x="48" y="44" width="158" height="40" rx="20" fill="#5A9956"/>
+  <text x="127" y="70" text-anchor="middle" fill="#FFFAF0" font-size="17" font-weight="700">Board approved!</text>
+
+  <!-- Heading -->
+  <text x="46" y="150" fill="#4A1B0C" font-size="52" font-weight="800">Hickory Hill is getting a</text>
+  <text x="46" y="208" fill="#4A1B0C" font-size="52" font-weight="800">Little Free Library!</text>
+
+  <!-- Subtitle -->
+  <text x="48" y="258" fill="#712B13" font-size="20">A community-funded, community-maintained "take a book,</text>
+  <text x="48" y="286" fill="#712B13" font-size="20">leave a book" box at the Manor Garden Lane footpath.</text>
+
+  <!-- Donate buttons -->
+  <rect x="48" y="318" width="230" height="56" rx="12" fill="#3D6FA8"/>
+  <text x="163" y="353" text-anchor="middle" fill="#FFFFFF" font-size="19" font-weight="700">Donate with Venmo</text>
+  <rect x="294" y="318" width="230" height="56" rx="12" fill="#4A1B0C"/>
+  <text x="409" y="353" text-anchor="middle" fill="#FFD86B" font-size="19" font-weight="700">Donate with PayPal</text>
+
+  <!-- Fundraising card -->
+  <rect x="660" y="40" width="200" height="340" rx="16" fill="#FFFAF0" stroke="#5A9956" stroke-width="3"/>
+  <text x="760" y="78" text-anchor="middle" fill="#2D5F3F" font-size="16" font-weight="700" letter-spacing="1">FUNDRAISING</text>
+
+  <!-- Thermometer track -->
+  <rect x="700" y="98" width="14" height="248" rx="7" fill="#E4E0D8"/>
+  <!-- Fill: 71% from bottom -->
+  <rect x="700" y="170" width="14" height="176" rx="7" fill="#5A9956"/>
+
+  <!-- Goal -->
+  <text x="728" y="106" fill="#4A1B0C" font-size="22" font-weight="800">$580</text>
+  <text x="728" y="124" fill="#712B13" font-size="13">Kit goal</text>
+  <!-- Raised -->
+  <text x="728" y="172" fill="#4A1B0C" font-size="22" font-weight="800">$411</text>
+  <text x="728" y="190" fill="#712B13" font-size="13">Raised</text>
+  <!-- Milestone -->
+  <circle cx="707" cy="280" r="5" fill="#4A1B0C"/>
+  <text x="728" y="284" fill="#4A1B0C" font-size="22" font-weight="800">$150</text>
+  <text x="728" y="302" fill="#712B13" font-size="13">Community-built</text>
+
+  <!-- Meta message -->
+  <text x="760" y="338" text-anchor="middle" fill="#712B13" font-size="12" font-style="italic">71% there — eyeing the kit!</text>
+
+  <!-- Little Free Library box -->
+  <g transform="translate(888,250)">
+    <rect x="0" y="40" width="92" height="58" rx="4" fill="#D85A30"/>
+    <rect x="8" y="48" width="76" height="42" rx="2" fill="#FCE8D4"/>
+    <rect x="12" y="52" width="6" height="34" fill="#5A9956"/>
+    <rect x="20" y="56" width="6" height="30" fill="#FFD86B"/>
+    <rect x="28" y="52" width="6" height="34" fill="#3D6FA8"/>
+    <rect x="36" y="58" width="6" height="28" fill="#D85A4B"/>
+    <rect x="44" y="52" width="6" height="34" fill="#C58FCF"/>
+    <rect x="52" y="56" width="6" height="30" fill="#5A9956"/>
+    <rect x="60" y="52" width="6" height="34" fill="#FFD86B"/>
+    <rect x="68" y="58" width="6" height="28" fill="#3D6FA8"/>
+    <polygon points="-6,40 46,14 98,40" fill="#4A1B0C"/>
+    <rect x="42" y="98" width="8" height="42" fill="#5A3818"/>
+  </g>
+</svg>
