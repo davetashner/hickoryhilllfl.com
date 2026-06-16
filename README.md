@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banner.svg" alt="Hickory Hill is getting a Little Free Library — a community-funded, community-maintained take a book, leave a book box at the Manor Garden Lane footpath entrance" width="100%">
+</p>
+
 # hickoryhilllfl.com
 
 Community fundraising and info site for the Hickory Hill neighborhood Little Free Library
@@ -11,6 +15,7 @@ Live at https://hickoryhilllfl.com.
 |---|---|
 | `index.html` | The entire site — one self-contained page (HTML, CSS, and a tiny inline script) |
 | `favicon.svg` | Browser-tab icon (SVG, scales from 16×16 up) |
+| `banner.svg` | README header banner (SVG, mirrors the site's hero) |
 | `.github/workflows/deploy.yml` | Push-to-deploy pipeline |
 
 ## Updating the site
