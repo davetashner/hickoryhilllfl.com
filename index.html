@@ -1105,20 +1105,34 @@
     t.querySelector('.pt-fill').style.height = raisedPct + '%';
     t.querySelector('.pt-mid-line').style.bottom = midPct + '%';
 
+    var goalLabel = t.querySelector('.pt-label-goal');
     var midLabel = t.querySelector('.pt-label-mid');
     var raisedLabel = t.querySelector('.pt-label-raised');
     midLabel.style.top = (100 - midPct) + '%';
     raisedLabel.style.top = (100 - raisedPct) + '%';
 
-    // Nudge the raised label if it would collide with the mid label
-    // (both are centered on their value; collision when within ~14% of each other).
-    // The mid label stays centered on its mark, so the raised label must clear a
-    // full label height plus half the mid label (~16px) to avoid overlapping it.
-    var gap = Math.abs(raisedPct - midPct);
-    if (gap < 14) {
-      raisedLabel.style.transform = raisedPct < midPct
-        ? 'translateY(16px)'              // raised below mid: drop fully below mid label
-        : 'translateY(calc(-100% - 16px))'; // raised above mid: lift fully above mid label
+    // Keep the moving "raised" label from colliding with the fixed goal (pinned
+    // to the top) or mid (pinned to its mark) labels. Measure real rectangles so
+    // this stays correct for any value and any label height, then nudge the
+    // raised label clear of whichever neighbor it overlaps.
+    var MARGIN = 6;
+    raisedLabel.style.transform = 'translateY(-50%)'; // reset to centered, then measure
+    var rRaised = raisedLabel.getBoundingClientRect();
+    var rGoal = goalLabel.getBoundingClientRect();
+    var rMid = midLabel.getBoundingClientRect();
+    var overlaps = function (a, b) {
+      return a.top < b.bottom + MARGIN && b.top < a.bottom + MARGIN;
+    };
+    var shift = 0;
+    if (overlaps(rRaised, rGoal)) {
+      shift = rGoal.bottom + MARGIN - rRaised.top;        // drop below the goal label
+    } else if (overlaps(rRaised, rMid)) {
+      shift = raisedPct < midPct
+        ? rMid.bottom + MARGIN - rRaised.top               // raised below mid: drop below it
+        : rMid.top - MARGIN - rRaised.bottom;              // raised above mid: lift above it
+    }
+    if (shift) {
+      raisedLabel.style.transform = 'translateY(calc(-50% + ' + Math.round(shift) + 'px))';
     }
 
     t.setAttribute('role', 'progressbar');
